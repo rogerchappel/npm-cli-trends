@@ -101,6 +101,16 @@ function diffRows(previous, current) {
   return lines.length ? lines : ["No package metadata or last-week download changes detected."];
 }
 
+function comparableSnapshot(snapshot) {
+  if (!snapshot) return null;
+  const { generatedAt, ...rest } = snapshot;
+  return rest;
+}
+
+function snapshotsMatch(previous, current) {
+  return JSON.stringify(comparableSnapshot(previous)) === JSON.stringify(comparableSnapshot(current));
+}
+
 async function readPreviousSnapshot() {
   const dir = path.join(root.pathname, "data", "snapshots");
   if (!existsSync(dir)) return null;
@@ -149,7 +159,16 @@ const snapshot = {
 const previous = await readPreviousSnapshot();
 const diff = diffRows(previous, snapshot);
 
-await writeFile(path.join(root.pathname, "data", "snapshots", `${today}.json`), JSON.stringify(snapshot, null, 2) + "\n");
+const todaySnapshotPath = path.join(root.pathname, "data", "snapshots", `${today}.json`);
+if (existsSync(todaySnapshotPath)) {
+  const todaySnapshot = JSON.parse(await readFile(todaySnapshotPath, "utf8"));
+  if (snapshotsMatch(todaySnapshot, snapshot)) {
+    console.log(`No material changes for ${today}; leaving existing snapshot artifacts unchanged.`);
+    process.exit(errors.length ? 1 : 0);
+  }
+}
+
+await writeFile(todaySnapshotPath, JSON.stringify(snapshot, null, 2) + "\n");
 await writeFile(path.join(root.pathname, "data", "latest.json"), JSON.stringify(snapshot, null, 2) + "\n");
 await writeFile(path.join(root.pathname, "data", "latest.csv"), asCsv(rows));
 await writeFile(
