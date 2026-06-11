@@ -1,0 +1,13 @@
+{
+  "name": "npm-cli-trends",
+  "version": "0.1.0",
+  "description": "Daily public npm metadata snapshots for widely used CLI and developer tooling packages.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "fetch": "node scripts/fetch.mjs",
+    "validate": "node scripts/validate.mjs",
+    "smoke": "node scripts/api.mjs summary --date latest"
+  },
+  "license": "MIT"
+}
