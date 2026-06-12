@@ -1,13 +1,13 @@
 # Package Index
 
-Generated from public npm registry metadata on 2026-06-11.
+Generated from public npm registry metadata on 2026-06-12.
 
-- **esbuild** 0.28.0 - 233992178 last-week downloads - https://registry.npmjs.org/esbuild
+- **esbuild** 0.28.1 - 233992178 last-week downloads - https://registry.npmjs.org/esbuild
 - **eslint** 10.4.1 - 132482239 last-week downloads - https://registry.npmjs.org/eslint
 - **jest** 30.4.2 - 45503729 last-week downloads - https://registry.npmjs.org/jest
-- **npm** 11.16.0 - 13003437 last-week downloads - https://registry.npmjs.org/npm
+- **npm** 11.17.0 - 13003437 last-week downloads - https://registry.npmjs.org/npm
 - **nx** 22.7.5 - 9063005 last-week downloads - https://registry.npmjs.org/nx
-- **pnpm** 11.5.3 - 103162973 last-week downloads - https://registry.npmjs.org/pnpm
+- **pnpm** 11.6.0 - 103162973 last-week downloads - https://registry.npmjs.org/pnpm
 - **prettier** 3.8.4 - 108865351 last-week downloads - https://registry.npmjs.org/prettier
 - **rollup** 4.61.1 - 116788824 last-week downloads - https://registry.npmjs.org/rollup
 - **tsx** 4.22.4 - 65524328 last-week downloads - https://registry.npmjs.org/tsx
