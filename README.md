@@ -45,9 +45,22 @@ The seed set focuses on common CLI and tooling packages:
 ```sh
 npm run fetch
 npm run validate
+npm run smoke
+npm run release:check
 node scripts/api.mjs summary --date latest
 node scripts/api.mjs package eslint --date latest
 ```
+
+## Release Candidate Checks
+
+`npm run release:check` is the required verification path for pull requests. It
+validates the checked-in JSON, CSV, docs, diff, and report artifacts, then runs a
+summary smoke command against `data/latest.json`.
+
+The repository is intentionally marked `private` in `package.json` because it is
+a public dataset and script repo, not an npm package intended for publication.
+Release review should focus on reproducible data artifacts, CI status, and
+README commands rather than npm publishing.
 
 ## Limitations
 
