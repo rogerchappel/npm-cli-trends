@@ -7,7 +7,24 @@
   "scripts": {
     "fetch": "node scripts/fetch.mjs",
     "validate": "node scripts/validate.mjs",
-    "smoke": "node scripts/api.mjs summary --date latest"
+    "smoke": "node scripts/api.mjs summary --date latest",
+    "release:check": "npm run validate && npm run smoke"
   },
-  "license": "MIT"
+  "keywords": [
+    "npm",
+    "cli",
+    "metadata",
+    "package-trends",
+    "developer-tools"
+  ],
+  "author": "Roger Chappel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerchappel/npm-cli-trends.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rogerchappel/npm-cli-trends/issues"
+  },
+  "homepage": "https://github.com/rogerchappel/npm-cli-trends#readme"
 }
