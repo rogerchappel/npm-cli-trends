@@ -1,6 +1,6 @@
 {
   "snapshotDate": "2026-06-13",
-  "generatedAt": "2026-06-13T04:36:00.735Z",
+  "generatedAt": "2026-06-13T12:05:41.491Z",
   "packageCount": 15,
   "errorCount": 0,
   "packages": [
@@ -25,9 +25,9 @@
         "esbuild": "bin/esbuild"
       },
       "unpackedSize": 146953,
-      "lastWeekDownloads": 204199566,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 243465958,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/esbuild",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/esbuild"
@@ -64,9 +64,9 @@
         "eslint": "bin/eslint.js"
       },
       "unpackedSize": 2908864,
-      "lastWeekDownloads": 115204395,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 137428332,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/eslint",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/eslint"
@@ -121,9 +121,9 @@
       ],
       "bin": "./bin/jest.js",
       "unpackedSize": 6698,
-      "lastWeekDownloads": 45678586,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 45871284,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/jest",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/jest"
@@ -178,9 +178,9 @@
         "npx": "bin/npx-cli.js"
       },
       "unpackedSize": 12097665,
-      "lastWeekDownloads": 12203913,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 14414357,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/npm",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/npm"
@@ -233,9 +233,9 @@
         "nx-cloud": "./dist/bin/nx-cloud.js"
       },
       "unpackedSize": 16021901,
-      "lastWeekDownloads": 9136589,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 9209460,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/nx",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/nx"
@@ -311,9 +311,9 @@
         "pnpx": "bin/pnpx.mjs"
       },
       "unpackedSize": 18611622,
-      "lastWeekDownloads": 92979224,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 111572179,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/pnpm",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/pnpm"
@@ -351,9 +351,9 @@
         "prettier": "bin/prettier.cjs"
       },
       "unpackedSize": 8604556,
-      "lastWeekDownloads": 113245611,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 114817190,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/prettier",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/prettier"
@@ -362,7 +362,7 @@
     {
       "name": "rollup",
       "description": "Next-generation ES module bundler",
-      "latestVersion": "4.61.1",
+      "latestVersion": "4.62.0",
       "license": "MIT",
       "homepage": "https://rollupjs.org/",
       "repository": "git+https://github.com/rollup/rollup.git",
@@ -370,11 +370,11 @@
         "beta": "4.55.1-0",
         "backports-2": "2.80.0",
         "backports-3": "3.30.0",
-        "latest": "4.61.1"
+        "latest": "4.62.0"
       },
       "createdAt": "2015-05-14T22:30:38.015Z",
-      "modifiedAt": "2026-06-04T05:23:42.235Z",
-      "latestPublishedAt": "2026-06-04T05:23:41.959Z",
+      "modifiedAt": "2026-06-13T08:32:24.803Z",
+      "latestPublishedAt": "2026-06-13T08:32:24.547Z",
       "maintainers": [
         "eventualbuddha",
         "lukastaegert",
@@ -392,10 +392,10 @@
       "bin": {
         "rollup": "dist/bin/rollup"
       },
-      "unpackedSize": 2834012,
-      "lastWeekDownloads": 103748945,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "unpackedSize": 2837926,
+      "lastWeekDownloads": 123293920,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/rollup",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/rollup"
@@ -431,9 +431,9 @@
         "tsx": "dist/cli.mjs"
       },
       "unpackedSize": 518418,
-      "lastWeekDownloads": 56423081,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 57237507,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/tsx",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/tsx"
@@ -450,10 +450,10 @@
         "next": "0.9.0-next.22",
         "turbo-2.3": "2.3.7",
         "latest": "2.9.18",
-        "canary": "2.9.19-canary.3"
+        "canary": "2.9.19-canary.4"
       },
       "createdAt": "2013-05-06T20:41:30.178Z",
-      "modifiedAt": "2026-06-11T22:02:11.922Z",
+      "modifiedAt": "2026-06-13T06:57:11.852Z",
       "latestPublishedAt": "2026-06-10T23:18:18.525Z",
       "maintainers": [
         "turbobot",
@@ -464,9 +464,9 @@
         "turbo": "bin/turbo"
       },
       "unpackedSize": 49796,
-      "lastWeekDownloads": 13814935,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 16608396,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/turbo",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/turbo"
@@ -511,9 +511,9 @@
         "tsserver": "bin/tsserver"
       },
       "unpackedSize": 24346827,
-      "lastWeekDownloads": 181677789,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 216849566,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/typescript",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/typescript"
@@ -551,9 +551,9 @@
         "vite": "bin/vite.js"
       },
       "unpackedSize": 2205485,
-      "lastWeekDownloads": 135762169,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 137798950,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/vite",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/vite"
@@ -590,9 +590,9 @@
         "vitest": "vitest.mjs"
       },
       "unpackedSize": 1904742,
-      "lastWeekDownloads": 56565939,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 67846220,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/vitest",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/vitest"
@@ -631,9 +631,9 @@
         "webpack": "bin/webpack.js"
       },
       "unpackedSize": 6609505,
-      "lastWeekDownloads": 49111709,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 49953399,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/webpack",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/webpack"
@@ -664,9 +664,9 @@
         "yarnpkg": "bin/yarn.js"
       },
       "unpackedSize": 5340487,
-      "lastWeekDownloads": 7622989,
-      "downloadsStart": "2026-06-05",
-      "downloadsEnd": "2026-06-11",
+      "lastWeekDownloads": 9091686,
+      "downloadsStart": "2026-06-06",
+      "downloadsEnd": "2026-06-12",
       "sources": {
         "registry": "https://registry.npmjs.org/yarn",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/yarn"
