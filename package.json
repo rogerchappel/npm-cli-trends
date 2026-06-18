@@ -11,7 +11,8 @@
     "fetch": "node scripts/fetch.mjs",
     "validate": "node scripts/validate.mjs",
     "smoke": "node scripts/api.mjs summary --date latest",
-    "release:check": "npm run validate && npm run smoke"
+    "release:check": "npm run validate && npm run smoke",
+    "package:smoke": "npm pack --dry-run"
   },
   "keywords": [
     "npm",
