@@ -1,6 +1,6 @@
 # Package Index
 
-Generated from public npm registry metadata on 2026-06-30.
+Generated from public npm registry metadata on 2026-07-01.
 
 - **esbuild** 0.28.1 - 237969557 last-week downloads - https://registry.npmjs.org/esbuild
 - **eslint** 10.6.0 - 138568871 last-week downloads - https://registry.npmjs.org/eslint
@@ -11,9 +11,9 @@ Generated from public npm registry metadata on 2026-06-30.
 - **prettier** 3.9.4 - 118209004 last-week downloads - https://registry.npmjs.org/prettier
 - **rollup** 4.62.2 - 122079486 last-week downloads - https://registry.npmjs.org/rollup
 - **tsx** 4.22.4 - 56971465 last-week downloads - https://registry.npmjs.org/tsx
-- **turbo** 2.10.1 - 16397790 last-week downloads - https://registry.npmjs.org/turbo
+- **turbo** 2.10.2 - 16397790 last-week downloads - https://registry.npmjs.org/turbo
 - **typescript** 6.0.3 - 217486890 last-week downloads - https://registry.npmjs.org/typescript
-- **vite** 8.1.0 - 140977733 last-week downloads - https://registry.npmjs.org/vite
+- **vite** 8.1.2 - 140977733 last-week downloads - https://registry.npmjs.org/vite
 - **vitest** 4.1.9 - 68928372 last-week downloads - https://registry.npmjs.org/vitest
 - **webpack** 5.108.3 - 49468822 last-week downloads - https://registry.npmjs.org/webpack
 - **yarn** 1.22.22 - 9228573 last-week downloads - https://registry.npmjs.org/yarn
