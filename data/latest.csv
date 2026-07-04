@@ -3,7 +3,7 @@ name,latestVersion,lastWeekDownloads,modifiedAt,latestPublishedAt,license,reposi
 "eslint","10.6.0","137540863","2026-06-26T20:09:18.112Z","2026-06-26T20:09:18.001Z","MIT","git+https://github.com/eslint/eslint.git"
 "jest","30.4.2","42817694","2026-05-09T00:31:21.174Z","2026-05-09T00:31:21.036Z","MIT","https://github.com/jestjs/jest.git"
 "npm","11.18.0","16002373","2026-06-29T16:43:16.713Z","2026-06-29T16:42:20.148Z","Artistic-2.0","git+https://github.com/npm/cli.git"
-"nx","23.0.1","9204675","2026-07-03T21:15:42.717Z","2026-06-23T15:47:30.447Z","MIT","https://github.com/nrwl/nx.git"
+"nx","23.0.1","9204675","2026-07-03T23:47:40.486Z","2026-06-23T15:47:30.447Z","MIT","https://github.com/nrwl/nx.git"
 "pnpm","11.9.0","115907638","2026-06-23T16:01:18.174Z","2026-06-23T15:43:46.512Z","MIT","git+https://github.com/pnpm/pnpm.git"
 "prettier","3.9.4","117848175","2026-06-30T01:11:17.746Z","2026-06-30T01:11:17.630Z","MIT","git+https://github.com/prettier/prettier.git"
 "rollup","4.62.2","125184828","2026-06-19T14:57:23.779Z","2026-06-19T14:57:23.529Z","MIT","git+https://github.com/rollup/rollup.git"
