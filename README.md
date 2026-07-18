@@ -52,6 +52,21 @@ node scripts/api.mjs summary --date latest
 node scripts/api.mjs package eslint --date latest
 ```
 
+## Runnable comparison demo
+
+Compare tracked tools using only the checked-in snapshot—no registry calls or
+API credentials are required:
+
+```sh
+npm run demo
+# or choose your own tracked packages
+node examples/compare-tools.mjs eslint prettier typescript
+```
+
+The demo prints the snapshot date and a table sorted by last-week downloads,
+including each package's current version, license, and latest publish date. It
+reads `data/latest.json`, so results are reproducible for the repository state.
+
 ## Release Candidate Checks
 
 `npm run release:check` is the required verification path for pull requests. It

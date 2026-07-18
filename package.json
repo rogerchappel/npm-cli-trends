@@ -12,6 +12,7 @@
     "validate": "node scripts/validate.mjs",
     "test": "node --test tests/*.test.mjs",
     "smoke": "node scripts/api.mjs summary --date latest",
+    "demo": "node examples/compare-tools.mjs vite webpack rollup",
     "release:check": "npm run validate && npm test && npm run smoke && npm run package:smoke",
     "package:smoke": "npm pack --dry-run"
   },
