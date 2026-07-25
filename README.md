@@ -11,6 +11,23 @@ The repository keeps compact, reviewable artifacts for researchers, maintainers,
 
 All generated data is public npm data. Fetches are conservative and include source URLs in each snapshot.
 
+## Update cadence and freshness
+
+A scheduled GitHub Actions run refreshes the public metadata daily at 04:17 UTC
+and opens or updates `automation/refresh-snapshot` for review. It never writes
+generated data directly to `main`.
+
+`npm run validate` requires `data/latest.json` to be no more than two UTC
+calendar days old. Tests can use a deterministic clock and threshold through
+`SNAPSHOT_NOW` and `MAX_SNAPSHOT_AGE_DAYS`; for example:
+
+```sh
+SNAPSHOT_NOW=2026-07-18T00:00:00Z MAX_SNAPSHOT_AGE_DAYS=2 npm run validate
+```
+
+If the scheduled run fails, manually run `npm run fetch`, review the generated
+diff and report, then run `npm run release:check` before opening an update PR.
+
 ## Tracked packages
 
 The seed set focuses on common CLI and tooling packages:
