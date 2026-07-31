@@ -11,7 +11,6 @@ concurrency:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   refresh:
@@ -19,11 +18,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 20
+
+      - name: Prepare persistent review branch
+        env:
+          REVIEW_BRANCH: automation/refresh-snapshot
+        run: |
+          if git ls-remote --exit-code --heads origin "$REVIEW_BRANCH" >/dev/null; then
+            git fetch origin "$REVIEW_BRANCH"
+            git switch --create "$REVIEW_BRANCH" --track "origin/$REVIEW_BRANCH"
+            git merge --no-edit "origin/${{ github.event.repository.default_branch }}"
+          else
+            git switch --create "$REVIEW_BRANCH"
+          fi
 
       - name: Refresh public npm metadata
         run: npm run fetch
@@ -31,17 +44,29 @@ jobs:
       - name: Verify generated artifacts
         run: npm run release:check
 
-      - name: Open or update snapshot pull request
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "data: refresh npm CLI trends snapshot"
-          committer: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
-          author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
-          branch: automation/refresh-snapshot
-          delete-branch: true
-          title: "data: refresh npm CLI trends snapshot"
-          body: |
-            Automated refresh of public npm registry metadata.
+      - name: Publish review branch
+        env:
+          REVIEW_BRANCH: automation/refresh-snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs reports
+          if git diff --cached --quiet; then
+            echo "No snapshot changes to publish."
+          else
+            git commit -m "data: refresh npm CLI trends snapshot"
+            git push --set-upstream origin "$REVIEW_BRANCH"
+          fi
 
-            Verification: `npm run release:check`
+      - name: Add maintainer review link
+        env:
+          GH_SERVER_URL: ${{ github.server_url }}
+          GH_REPOSITORY: ${{ github.repository }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          {
+            echo "## Snapshot refresh"
+            echo
+            echo "Review or open the persistent refresh pull request:"
+            echo "$GH_SERVER_URL/$GH_REPOSITORY/compare/$DEFAULT_BRANCH...automation/refresh-snapshot?expand=1"
+          } >> "$GITHUB_STEP_SUMMARY"
