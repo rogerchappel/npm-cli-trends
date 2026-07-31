@@ -14,7 +14,10 @@ All generated data is public npm data. Fetches are conservative and include sour
 ## Update cadence and freshness
 
 A scheduled GitHub Actions run refreshes the public metadata daily at 04:17 UTC
-and opens or updates `automation/refresh-snapshot` for review. It never writes
+and publishes updates to the persistent `automation/refresh-snapshot` branch.
+Each run summary links to a comparison where a maintainer can open or update the
+pull request. This fallback works when the repository setting “Allow GitHub
+Actions to create and approve pull requests” is disabled, and it never writes
 generated data directly to `main`.
 
 `npm run validate` requires `data/latest.json` to be no more than two UTC
@@ -27,6 +30,10 @@ SNAPSHOT_NOW=2026-07-18T00:00:00Z MAX_SNAPSHOT_AGE_DAYS=2 npm run validate
 
 If the scheduled run fails, manually run `npm run fetch`, review the generated
 diff and report, then run `npm run release:check` before opening an update PR.
+If the review branch cannot merge the latest `main`, close its pull request,
+delete only `automation/refresh-snapshot`, and rerun the workflow with
+`workflow_dispatch`; the run recreates the branch and prints a fresh review
+link. `npm run validate:automation` checks this publication contract locally.
 
 ## Tracked packages
 
