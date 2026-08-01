@@ -30,7 +30,9 @@ jobs:
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           REVIEW_BRANCH: automation/refresh-snapshot
-        run: node scripts/refresh-branch.mjs prepare
+        run: |
+          cp scripts/refresh-branch.mjs "$RUNNER_TEMP/refresh-branch.mjs"
+          node "$RUNNER_TEMP/refresh-branch.mjs" prepare
 
       - name: Refresh public npm metadata
         run: npm run fetch
@@ -50,7 +52,7 @@ jobs:
           else
             git commit -m "data: refresh npm CLI trends snapshot"
           fi
-          node scripts/refresh-branch.mjs publish
+          node "$RUNNER_TEMP/refresh-branch.mjs" publish
 
       - name: Add maintainer review link
         env:
