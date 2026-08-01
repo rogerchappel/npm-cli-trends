@@ -28,15 +28,11 @@ jobs:
 
       - name: Prepare persistent review branch
         env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           REVIEW_BRANCH: automation/refresh-snapshot
         run: |
-          if git ls-remote --exit-code --heads origin "$REVIEW_BRANCH" >/dev/null; then
-            git fetch origin "$REVIEW_BRANCH"
-            git switch --create "$REVIEW_BRANCH" --track "origin/$REVIEW_BRANCH"
-            git merge --no-edit "origin/${{ github.event.repository.default_branch }}"
-          else
-            git switch --create "$REVIEW_BRANCH"
-          fi
+          cp scripts/refresh-branch.mjs "$RUNNER_TEMP/refresh-branch.mjs"
+          node "$RUNNER_TEMP/refresh-branch.mjs" prepare
 
       - name: Refresh public npm metadata
         run: npm run fetch
@@ -55,8 +51,8 @@ jobs:
             echo "No snapshot changes to publish."
           else
             git commit -m "data: refresh npm CLI trends snapshot"
-            git push --set-upstream origin "$REVIEW_BRANCH"
           fi
+          node "$RUNNER_TEMP/refresh-branch.mjs" publish
 
       - name: Add maintainer review link
         env:
