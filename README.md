@@ -30,10 +30,13 @@ SNAPSHOT_NOW=2026-07-18T00:00:00Z MAX_SNAPSHOT_AGE_DAYS=2 npm run validate
 
 If the scheduled run fails, manually run `npm run fetch`, review the generated
 diff and report, then run `npm run release:check` before opening an update PR.
-If the review branch cannot merge the latest `main`, close its pull request,
-delete only `automation/refresh-snapshot`, and rerun the workflow with
-`workflow_dispatch`; the run recreates the branch and prints a fresh review
-link. `npm run validate:automation` checks this publication contract locally.
+If the persistent review branch has diverged from `main`, the next scheduled or
+`workflow_dispatch` run automatically rebuilds it from the latest `main`,
+regenerates the artifacts, and safely replaces the stale branch. Maintainers do
+not need to close its pull request or delete the branch. The workflow refuses to
+overwrite a concurrent branch update and never writes generated data directly
+to `main`. `npm run validate:automation` checks this publication contract
+locally.
 
 ## Tracked packages
 
