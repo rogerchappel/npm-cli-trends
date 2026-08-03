@@ -20,12 +20,16 @@ pull request. This fallback works when the repository setting “Allow GitHub
 Actions to create and approve pull requests” is disabled, and it never writes
 generated data directly to `main`.
 
-`npm run validate` requires `data/latest.json` to be no more than two UTC
-calendar days old. Tests can use a deterministic clock and threshold through
-`SNAPSHOT_NOW` and `MAX_SNAPSHOT_AGE_DAYS`; for example:
+`npm run validate` checks the integrity and internal consistency of the
+checked-in artifacts without consulting the wall clock, so historical
+checkouts remain reproducible. The scheduled refresh separately runs
+`npm run validate:freshness`, which requires newly fetched `data/latest.json`
+to be no more than two UTC calendar days old. Freshness checks can use a
+deterministic clock and threshold through `SNAPSHOT_NOW` and
+`MAX_SNAPSHOT_AGE_DAYS`; for example:
 
 ```sh
-SNAPSHOT_NOW=2026-07-18T00:00:00Z MAX_SNAPSHOT_AGE_DAYS=2 npm run validate
+SNAPSHOT_NOW=2026-07-18T00:00:00Z MAX_SNAPSHOT_AGE_DAYS=2 npm run validate:freshness
 ```
 
 If the scheduled run fails, manually run `npm run fetch`, review the generated
@@ -72,6 +76,7 @@ The seed set focuses on common CLI and tooling packages:
 ```sh
 npm run fetch
 npm run validate
+npm run validate:freshness
 npm test
 npm run smoke
 npm run release:check
@@ -99,6 +104,8 @@ reads `data/latest.json`, so results are reproducible for the repository state.
 `npm run release:check` is the required verification path for pull requests. It
 validates the checked-in JSON, CSV, docs, diff, and report artifacts, then runs a
 fixture-backed API test and a summary smoke command against `data/latest.json`.
+It deliberately omits wall-clock freshness; `npm run validate:freshness` is the
+scheduled refresh gate for newly generated artifacts.
 
 The repository is intentionally marked `private` in `package.json` because it is
 a public dataset and script repo, not an npm package intended for publication.
