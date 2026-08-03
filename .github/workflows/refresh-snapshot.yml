@@ -40,6 +40,9 @@ jobs:
       - name: Verify generated artifacts
         run: npm run release:check
 
+      - name: Verify refreshed snapshot freshness
+        run: npm run validate:freshness
+
       - name: Publish review branch
         env:
           REVIEW_BRANCH: automation/refresh-snapshot
