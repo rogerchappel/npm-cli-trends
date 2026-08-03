@@ -18,6 +18,8 @@ assert.match(workflow, /"\$RUNNER_TEMP\/refresh-branch\.mjs" prepare/,
   "refresh workflow must rebuild its persistent branch from the default branch");
 assert.match(workflow, /"\$RUNNER_TEMP\/refresh-branch\.mjs" publish/,
   "refresh workflow must safely replace its persistent review branch");
+assert.match(workflow, /npm run validate:freshness/,
+  "refresh workflow must reject stale newly fetched artifacts");
 assert.match(workflow, /\$GITHUB_STEP_SUMMARY/,
   "refresh workflow must expose a maintainer review link");
 

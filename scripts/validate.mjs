@@ -1,6 +1,5 @@
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
-import { assertSnapshotFresh } from "./freshness.mjs";
 
 const root = new URL("..", import.meta.url);
 
@@ -9,12 +8,6 @@ function assert(condition, message) {
 }
 
 const latest = JSON.parse(await readFile(path.join(root.pathname, "data", "latest.json"), "utf8"));
-const freshnessNow = process.env.SNAPSHOT_NOW || new Date();
-const maxSnapshotAgeDays = Number(process.env.MAX_SNAPSHOT_AGE_DAYS || 2);
-assertSnapshotFresh(latest.snapshotDate, {
-  now: freshnessNow,
-  maxAgeDays: maxSnapshotAgeDays
-});
 assert(Array.isArray(latest.packages), "packages must be an array");
 assert(latest.packageCount === latest.packages.length, "packageCount must match packages length");
 
