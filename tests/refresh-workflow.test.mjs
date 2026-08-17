@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { prepare, publish } from "../scripts/refresh-branch.mjs";
+import { ensureRefreshPullRequest } from "../scripts/ensure-refresh-pr.mjs";
 
 function git(cwd, ...args) {
   return execFileSync("git", args, { cwd, encoding: "utf8", stdio: "pipe" }).trim();
@@ -63,5 +64,67 @@ test("a conflicting persistent branch is rebuilt and safely published", () => {
   assert.equal(
     git(runner, "ls-remote", "origin", "refs/heads/automation/refresh-snapshot").split("\t")[0],
     refreshedSha
+  );
+});
+
+function recordedRunner({ ahead = "1", pulls = [] } = {}) {
+  const calls = [];
+  return {
+    calls,
+    run(command, args) {
+      calls.push([command, ...args]);
+      if (command === "git") return ahead;
+      if (args[1] === "list") return JSON.stringify(pulls);
+      return "";
+    }
+  };
+}
+
+test("refresh PR reconciliation creates the persistent PR when missing", () => {
+  const runner = recordedRunner();
+  const result = ensureRefreshPullRequest({
+    defaultBranch: "main",
+    reviewBranch: "automation/refresh-snapshot",
+    run: runner.run
+  });
+
+  assert.equal(result, "created");
+  assert.deepEqual(runner.calls.at(-1).slice(0, 3), ["gh", "pr", "create"]);
+  assert.ok(runner.calls.at(-1).includes("automation/refresh-snapshot"));
+});
+
+test("refresh PR reconciliation updates the one existing persistent PR", () => {
+  const runner = recordedRunner({ pulls: [{ number: 42 }] });
+  const result = ensureRefreshPullRequest({
+    defaultBranch: "main",
+    reviewBranch: "automation/refresh-snapshot",
+    run: runner.run
+  });
+
+  assert.equal(result, "updated #42");
+  assert.deepEqual(runner.calls.at(-1).slice(0, 4), ["gh", "pr", "edit", "42"]);
+});
+
+test("refresh PR reconciliation is a successful no-op without branch changes", () => {
+  const runner = recordedRunner({ ahead: "0" });
+  const result = ensureRefreshPullRequest({
+    defaultBranch: "main",
+    reviewBranch: "automation/refresh-snapshot",
+    run: runner.run
+  });
+
+  assert.equal(result, "no changes");
+  assert.equal(runner.calls.filter(([command]) => command === "gh").length, 0);
+});
+
+test("refresh PR reconciliation rejects duplicate open persistent PRs", () => {
+  const runner = recordedRunner({ pulls: [{ number: 41 }, { number: 42 }] });
+  assert.throws(
+    () => ensureRefreshPullRequest({
+      defaultBranch: "main",
+      reviewBranch: "automation/refresh-snapshot",
+      run: runner.run
+    }),
+    /no more than one persistent refresh PR/
   );
 });

@@ -15,10 +15,11 @@ All generated data is public npm data. Fetches are conservative and include sour
 
 A scheduled GitHub Actions run refreshes the public metadata daily at 04:17 UTC
 and publishes updates to the persistent `automation/refresh-snapshot` branch.
-Each run summary links to a comparison where a maintainer can open or update the
-pull request. This fallback works when the repository setting “Allow GitHub
-Actions to create and approve pull requests” is disabled, and it never writes
-generated data directly to `main`.
+When generated artifacts differ from `main`, the workflow creates one pull
+request from that branch or updates the existing open pull request. Maintainers
+review and merge that PR to publish the current snapshot on the default branch;
+the workflow never writes generated data directly to `main`. A run with no
+generated difference succeeds without opening an empty PR.
 
 `npm run validate` checks the integrity and internal consistency of the
 checked-in artifacts without consulting the wall clock, so historical
@@ -37,10 +38,11 @@ diff and report, then run `npm run release:check` before opening an update PR.
 If the persistent review branch has diverged from `main`, the next scheduled or
 `workflow_dispatch` run automatically rebuilds it from the latest `main`,
 regenerates the artifacts, and safely replaces the stale branch. Maintainers do
-not need to close its pull request or delete the branch. The workflow refuses to
-overwrite a concurrent branch update and never writes generated data directly
-to `main`. `npm run validate:automation` checks this publication contract
-locally.
+not need to close its pull request or delete the branch. Review the generated
+dated snapshot, `data/latest.*`, report, and diff in that single PR before
+merging. The workflow refuses to overwrite a concurrent branch update.
+`npm run validate:automation` checks the branch publication and PR
+reconciliation contract locally.
 
 ## Tracked packages
 

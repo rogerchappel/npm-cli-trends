@@ -8,8 +8,8 @@ const workflow = await readFile(
 
 assert.match(workflow, /permissions:\s*\n\s+contents: write/,
   "refresh workflow must be allowed to publish its review branch");
-assert.doesNotMatch(workflow, /pull-requests: write|create-pull-request/,
-  "refresh workflow must not require repository PR-creation permission");
+assert.match(workflow, /pull-requests: write/,
+  "refresh workflow must have least-privilege permission to reconcile its PR");
 assert.match(workflow, /fetch-depth: 0/,
   "refresh workflow must fetch history before updating its persistent branch");
 assert.match(workflow, /cp scripts\/refresh-branch\.mjs "\$RUNNER_TEMP\/refresh-branch\.mjs"/,
@@ -20,7 +20,7 @@ assert.match(workflow, /"\$RUNNER_TEMP\/refresh-branch\.mjs" publish/,
   "refresh workflow must safely replace its persistent review branch");
 assert.match(workflow, /npm run validate:freshness/,
   "refresh workflow must reject stale newly fetched artifacts");
-assert.match(workflow, /\$GITHUB_STEP_SUMMARY/,
-  "refresh workflow must expose a maintainer review link");
+assert.match(workflow, /node scripts\/ensure-refresh-pr\.mjs/,
+  "refresh workflow must create or update its persistent pull request");
 
-console.log("validated refresh workflow publication fallback");
+console.log("validated refresh workflow publication and PR reconciliation");
