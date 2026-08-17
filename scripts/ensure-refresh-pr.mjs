@@ -33,7 +33,7 @@ export function ensureRefreshPullRequest({ defaultBranch, reviewBranch, run = ex
     "--json", "number"
   ]));
   if (!Array.isArray(pulls) || pulls.length > 1) {
-    throw new Error("Expected at most exactly one persistent refresh PR");
+    throw new Error("Expected no more than one persistent refresh PR");
   }
 
   if (pulls.length === 1) {

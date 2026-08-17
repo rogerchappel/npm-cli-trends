@@ -125,6 +125,6 @@ test("refresh PR reconciliation rejects duplicate open persistent PRs", () => {
       reviewBranch: "automation/refresh-snapshot",
       run: runner.run
     }),
-    /exactly one persistent refresh PR/
+    /no more than one persistent refresh PR/
   );
 });
