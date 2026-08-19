@@ -19,7 +19,10 @@ When generated artifacts differ from `main`, the workflow creates one pull
 request from that branch or updates the existing open pull request. Maintainers
 review and merge that PR to publish the current snapshot on the default branch;
 the workflow never writes generated data directly to `main`. A run with no
-generated difference succeeds without opening an empty PR.
+generated difference succeeds without opening an empty PR. If repository policy
+prevents GitHub Actions from creating the first PR, the workflow still succeeds,
+preserves the published review branch, and links a compare/new-PR page in the
+run summary for a maintainer to open it manually. Later runs update that PR.
 
 `npm run validate` checks the integrity and internal consistency of the
 checked-in artifacts without consulting the wall clock, so historical
@@ -33,8 +36,11 @@ deterministic clock and threshold through `SNAPSHOT_NOW` and
 SNAPSHOT_NOW=2026-07-18T00:00:00Z MAX_SNAPSHOT_AGE_DAYS=2 npm run validate:freshness
 ```
 
-If the scheduled run fails, manually run `npm run fetch`, review the generated
-diff and report, then run `npm run release:check` before opening an update PR.
+If the run summary reports that Actions could not create the first review PR,
+follow its compare/new-PR link; the verified generated artifacts are already on
+the persistent review branch. For other scheduled-run failures, manually run
+`npm run fetch`, review the generated diff and report, then run
+`npm run release:check` before opening an update PR.
 If the persistent review branch has diverged from `main`, the next scheduled or
 `workflow_dispatch` run automatically rebuilds it from the latest `main`,
 regenerates the artifacts, and safely replaces the stale branch. Maintainers do

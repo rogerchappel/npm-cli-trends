@@ -58,7 +58,7 @@ jobs:
           fi
           node "$RUNNER_TEMP/refresh-branch.mjs" publish
 
-      - name: Create or update persistent review pull request
+      - name: Reconcile persistent review pull request
         env:
           GH_TOKEN: ${{ github.token }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
