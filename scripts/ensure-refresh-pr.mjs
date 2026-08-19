@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { appendFileSync } from "node:fs";
 
 const title = "data: refresh npm CLI trends snapshot";
 const body = `## Automated snapshot refresh
@@ -11,7 +12,22 @@ function execute(command, args) {
   return execFileSync(command, args, { encoding: "utf8", stdio: "pipe" }).trim();
 }
 
-export function ensureRefreshPullRequest({ defaultBranch, reviewBranch, run = execute }) {
+function isActionsPullRequestPolicyError(error) {
+  const diagnostic = [error?.message, error?.stderr, error?.stdout]
+    .filter(Boolean)
+    .join("\n");
+  return diagnostic.includes("GitHub Actions is not permitted to create or approve pull requests")
+    && diagnostic.includes("createPullRequest");
+}
+
+export function ensureRefreshPullRequest({
+  defaultBranch,
+  reviewBranch,
+  repository = process.env.GITHUB_REPOSITORY,
+  stepSummary = process.env.GITHUB_STEP_SUMMARY,
+  run = execute,
+  appendSummary = appendFileSync
+}) {
   const ahead = Number(run("git", [
     "rev-list",
     "--count",
@@ -43,13 +59,25 @@ export function ensureRefreshPullRequest({ defaultBranch, reviewBranch, run = ex
     return `updated #${number}`;
   }
 
-  run("gh", [
-    "pr", "create",
-    "--base", defaultBranch,
-    "--head", reviewBranch,
-    "--title", title,
-    "--body", body
-  ]);
+  try {
+    run("gh", [
+      "pr", "create",
+      "--base", defaultBranch,
+      "--head", reviewBranch,
+      "--title", title,
+      "--body", body
+    ]);
+  } catch (error) {
+    if (!isActionsPullRequestPolicyError(error)) throw error;
+    if (!repository || !stepSummary) {
+      throw new Error("GITHUB_REPOSITORY and GITHUB_STEP_SUMMARY are required for the pull-request policy fallback", { cause: error });
+    }
+    const reviewUrl = `https://github.com/${repository}/compare/${defaultBranch}...${reviewBranch}?expand=1`;
+    const summary = `## Snapshot review branch published\n\nGitHub Actions cannot create pull requests under this repository's policy. The generated changes remain on \`${reviewBranch}\`.\n\n[Compare changes and open the review pull request](${reviewUrl})\n`;
+    appendSummary(stepSummary, summary);
+    console.log(`Review branch preserved; open the pull request manually: ${reviewUrl}`);
+    return `manual review: ${reviewUrl}`;
+  }
   console.log("Created persistent refresh PR.");
   return "created";
 }
