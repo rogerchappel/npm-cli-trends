@@ -7,6 +7,8 @@ const body = `## Automated snapshot refresh
 This persistent pull request is created and updated by the daily snapshot workflow.
 
 Review the generated data, report, and diff before merging. The workflow rebuilds this branch from the latest default branch on every run.`;
+const notificationTitle = "Snapshot refresh requires a maintainer-created pull request";
+const notificationMarker = "<!-- snapshot-refresh-policy-notification -->";
 
 function execute(command, args) {
   return execFileSync(command, args, { encoding: "utf8", stdio: "pipe" }).trim();
@@ -73,10 +75,29 @@ export function ensureRefreshPullRequest({
       throw new Error("GITHUB_REPOSITORY and GITHUB_STEP_SUMMARY are required for the pull-request policy fallback", { cause: error });
     }
     const reviewUrl = `https://github.com/${repository}/compare/${defaultBranch}...${reviewBranch}?expand=1`;
-    const summary = `## Snapshot review branch published\n\nGitHub Actions cannot create pull requests under this repository's policy. The generated changes remain on \`${reviewBranch}\`.\n\n[Compare changes and open the review pull request](${reviewUrl})\n`;
+    const issueBody = `${notificationMarker}\n\nGitHub Actions published fresh generated snapshot changes to \`${reviewBranch}\`, but repository policy prevents the workflow from creating the first pull request.\n\n[Compare the exact changes and open the review pull request](${reviewUrl})\n\nThis issue is updated by later refreshes until a pull request exists.`;
+    const notifications = JSON.parse(run("gh", [
+      "issue", "list",
+      "--state", "open",
+      "--search", `in:body ${notificationMarker}`,
+      "--json", "number"
+    ]));
+    if (!Array.isArray(notifications) || notifications.length > 1) {
+      throw new Error("Expected no more than one open refresh policy notification");
+    }
+    let notification;
+    if (notifications.length === 1) {
+      const number = String(notifications[0].number);
+      run("gh", ["issue", "edit", number, "--title", notificationTitle, "--body", issueBody]);
+      notification = `updated issue #${number}`;
+    } else {
+      run("gh", ["issue", "create", "--title", notificationTitle, "--body", issueBody]);
+      notification = "created issue";
+    }
+    const summary = `## Snapshot review branch published\n\nGitHub Actions cannot create pull requests under this repository's policy. The generated changes remain on \`${reviewBranch}\`, and a durable maintainer notification was ${notification}.\n\n[Compare changes and open the review pull request](${reviewUrl})\n`;
     appendSummary(stepSummary, summary);
-    console.log(`Review branch preserved; open the pull request manually: ${reviewUrl}`);
-    return `manual review: ${reviewUrl}`;
+    console.log(`Review branch preserved; ${notification}: ${reviewUrl}`);
+    return `${notification}: ${reviewUrl}`;
   }
   console.log("Created persistent refresh PR.");
   return "created";
