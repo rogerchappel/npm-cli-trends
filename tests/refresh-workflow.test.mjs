@@ -67,15 +67,16 @@ test("a conflicting persistent branch is rebuilt and safely published", () => {
   );
 });
 
-function recordedRunner({ ahead = "1", pulls = [], createError } = {}) {
+function recordedRunner({ ahead = "1", pulls = [], notifications = [], createError } = {}) {
   const calls = [];
   return {
     calls,
     run(command, args) {
       calls.push([command, ...args]);
       if (command === "git") return ahead;
-      if (args[1] === "list") return JSON.stringify(pulls);
-      if (args[1] === "create" && createError) throw createError;
+      if (args[0] === "pr" && args[1] === "list") return JSON.stringify(pulls);
+      if (args[0] === "issue" && args[1] === "list") return JSON.stringify(notifications);
+      if (args[0] === "pr" && args[1] === "create" && createError) throw createError;
       return "";
     }
   };
@@ -94,7 +95,7 @@ test("refresh PR reconciliation creates the persistent PR when missing", () => {
   assert.ok(runner.calls.at(-1).includes("automation/refresh-snapshot"));
 });
 
-test("refresh PR reconciliation preserves the branch when Actions PR creation is denied", () => {
+test("refresh PR reconciliation creates a durable notification when Actions PR creation is denied", () => {
   const createError = Object.assign(new Error("gh failed"), {
     stderr: "GraphQL: GitHub Actions is not permitted to create or approve pull requests (createPullRequest)"
   });
@@ -111,11 +112,35 @@ test("refresh PR reconciliation preserves the branch when Actions PR creation is
 
   assert.equal(
     result,
-    "manual review: https://github.com/rogerchappel/npm-cli-trends/compare/main...automation/refresh-snapshot?expand=1"
+    "created issue: https://github.com/rogerchappel/npm-cli-trends/compare/main...automation/refresh-snapshot?expand=1"
   );
+  const issueCreate = runner.calls.find(([, resource, action]) => resource === "issue" && action === "create");
+  assert.ok(issueCreate);
+  assert.match(issueCreate.join(" "), /compare\/main\.\.\.automation\/refresh-snapshot\?expand=1/);
   assert.equal(summaries.length, 1);
   assert.equal(summaries[0][0], "/tmp/summary");
   assert.match(summaries[0][1], /Compare changes and open the review pull request/);
+});
+
+test("refresh PR reconciliation updates the existing durable notification", () => {
+  const createError = Object.assign(new Error("gh failed"), {
+    stderr: "GraphQL: GitHub Actions is not permitted to create or approve pull requests (createPullRequest)"
+  });
+  const runner = recordedRunner({ createError, notifications: [{ number: 17 }] });
+  const result = ensureRefreshPullRequest({
+    defaultBranch: "main",
+    reviewBranch: "automation/refresh-snapshot",
+    repository: "rogerchappel/npm-cli-trends",
+    stepSummary: "/tmp/summary",
+    run: runner.run,
+    appendSummary: () => {}
+  });
+
+  assert.match(result, /^updated issue #17:/);
+  const issueEdit = runner.calls.find(([, resource, action]) => resource === "issue" && action === "edit");
+  assert.deepEqual(issueEdit.slice(0, 4), ["gh", "issue", "edit", "17"]);
+  assert.match(issueEdit.join(" "), /compare\/main\.\.\.automation\/refresh-snapshot\?expand=1/);
+  assert.equal(runner.calls.filter(([, resource, action]) => resource === "issue" && action === "create").length, 0);
 });
 
 test("refresh PR reconciliation still fails on unrelated creation errors", () => {
@@ -144,6 +169,7 @@ test("refresh PR reconciliation updates the one existing persistent PR", () => {
 
   assert.equal(result, "updated #42");
   assert.deepEqual(runner.calls.at(-1).slice(0, 4), ["gh", "pr", "edit", "42"]);
+  assert.equal(runner.calls.filter(([, resource]) => resource === "issue").length, 0);
 });
 
 test("refresh PR reconciliation is a successful no-op without branch changes", () => {
