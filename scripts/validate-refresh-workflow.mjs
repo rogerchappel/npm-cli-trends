@@ -5,6 +5,10 @@ const workflow = await readFile(
   new URL("../.github/workflows/refresh-snapshot.yml", import.meta.url),
   "utf8"
 );
+const contributing = await readFile(
+  new URL("../CONTRIBUTING.md", import.meta.url),
+  "utf8"
+);
 
 assert.match(workflow, /permissions:\s*\n\s+contents: write/,
   "refresh workflow must be allowed to publish its review branch");
@@ -23,4 +27,13 @@ assert.match(workflow, /npm run validate:freshness/,
 assert.match(workflow, /node scripts\/ensure-refresh-pr\.mjs/,
   "refresh workflow must create or update its persistent pull request");
 
-console.log("validated refresh workflow publication and PR reconciliation");
+assert.match(contributing, /next scheduled or\s+`workflow_dispatch` run rebuild it from the latest `main`/,
+  "maintainer recovery instructions must preserve automatic branch rebuilding");
+assert.match(contributing, /Do not close its pull request or manually delete the branch/,
+  "maintainer recovery instructions must not require branch or PR deletion");
+assert.match(contributing, /`npm run validate` for wall-clock-independent artifact integrity/,
+  "maintainer instructions must describe validate as the reproducible integrity check");
+assert.match(contributing, /`npm run validate:freshness` to reject snapshots older than two UTC calendar\s+days/,
+  "maintainer instructions must assign the wall-clock age gate to validate:freshness");
+
+console.log("validated refresh workflow publication, PR reconciliation, and maintainer guidance");
