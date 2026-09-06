@@ -94,6 +94,10 @@ node scripts/api.mjs summary --date latest
 node scripts/api.mjs package eslint --date latest
 ```
 
+The optional date is `latest` or `YYYY-MM-DD`. Invalid command arguments print
+usage and exit with status 2; a requested date or package that is unavailable
+prints a concise message and exits with status 1.
+
 ## Runnable comparison demo
 
 Compare tracked tools using only the checked-in snapshot—no registry calls or
