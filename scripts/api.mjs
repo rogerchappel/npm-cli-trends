@@ -2,12 +2,36 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = new URL("..", import.meta.url);
-const [command, nameOrFlag, maybeDate] = process.argv.slice(2);
+function usage(message) {
+  console.error(`error: ${message}`);
+  console.error("usage: node scripts/api.mjs summary [--date <latest|YYYY-MM-DD>]");
+  console.error("   or: node scripts/api.mjs package <name> [--date <latest|YYYY-MM-DD>]");
+  process.exit(2);
+}
 
-function selectedDate() {
-  if (nameOrFlag === "--date") return maybeDate;
-  const idx = process.argv.indexOf("--date");
-  return idx === -1 ? "latest" : process.argv[idx + 1];
+function parseArguments(args) {
+  const [command, ...rest] = args;
+  if (!["summary", "package"].includes(command)) usage("expected summary or package command");
+
+  let name;
+  let options;
+  if (command === "package") {
+    [name, ...options] = rest;
+    if (!name || name.startsWith("--")) usage("package requires a package name");
+  } else {
+    options = rest;
+  }
+
+  if (options.length === 1 && options[0] === "--date") usage("--date requires a value");
+  if (options.length !== 0 && (options.length !== 2 || options[0] !== "--date")) {
+    usage(`invalid arguments for ${command}`);
+  }
+
+  const date = options.length === 0 ? "latest" : options[1];
+  if (date !== "latest" && !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    usage("date must be latest or YYYY-MM-DD");
+  }
+  return { command, name, date };
 }
 
 async function loadSnapshot(date) {
@@ -15,13 +39,17 @@ async function loadSnapshot(date) {
   return JSON.parse(await readFile(path.join(root.pathname, file), "utf8"));
 }
 
-if (!["summary", "package"].includes(command)) {
-  console.error("usage: node scripts/api.mjs summary --date latest");
-  console.error("   or: node scripts/api.mjs package eslint --date latest");
-  process.exit(2);
+const { command, name, date } = parseArguments(process.argv.slice(2));
+let snapshot;
+try {
+  snapshot = await loadSnapshot(date);
+} catch (error) {
+  if (error.code === "ENOENT") {
+    console.error(`snapshot not found: ${date}`);
+    process.exit(1);
+  }
+  throw error;
 }
-
-const snapshot = await loadSnapshot(selectedDate());
 
 if (command === "summary") {
   console.log(JSON.stringify({
@@ -36,9 +64,9 @@ if (command === "summary") {
 }
 
 if (command === "package") {
-  const pkg = snapshot.packages.find((candidate) => candidate.name === nameOrFlag);
+  const pkg = snapshot.packages.find((candidate) => candidate.name === name);
   if (!pkg) {
-    console.error(`package not found: ${nameOrFlag}`);
+    console.error(`package not found: ${name}`);
     process.exit(1);
   }
   console.log(JSON.stringify(pkg, null, 2));
