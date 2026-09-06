@@ -43,3 +43,31 @@ test("missing package exits with a clear error", async () => {
     }
   );
 });
+
+const invalidInvocations = [
+  { args: ["summary", "--date"], label: "missing date value" },
+  { args: ["package"], label: "missing package name" },
+  { args: ["summary", "--unknown"], label: "unknown option" },
+  { args: ["summary", "extra"], label: "extra argument" },
+  { args: ["package", "--date", "latest", "eslint"], label: "misordered package name" }
+];
+
+for (const { args, label } of invalidInvocations) {
+  test(`${label} exits with concise usage`, async () => {
+    await assert.rejects(runApi(args), (error) => {
+      assert.equal(error.code, 2);
+      assert.match(error.stderr, /^error: .+\nusage: node scripts\/api\.mjs summary \[--date <latest\|YYYY-MM-DD>\]/);
+      assert.doesNotMatch(error.stderr, /\n\s+at |ENOENT/);
+      return true;
+    });
+  });
+}
+
+test("unavailable snapshot date exits without a filesystem stack trace", async () => {
+  await assert.rejects(runApi(["summary", "--date", "1900-01-01"]), (error) => {
+    assert.equal(error.code, 1);
+    assert.equal(error.stderr, "snapshot not found: 1900-01-01\n");
+    assert.doesNotMatch(error.stderr, /\n\s+at |ENOENT/);
+    return true;
+  });
+});
