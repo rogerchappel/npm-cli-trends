@@ -1,22 +1,22 @@
 {
-  "snapshotDate": "2026-07-31",
-  "generatedAt": "2026-07-31T11:32:03.187Z",
+  "snapshotDate": "2026-10-17",
+  "generatedAt": "2026-10-17T04:30:05.791Z",
   "packageCount": 15,
   "errorCount": 0,
   "packages": [
     {
       "name": "esbuild",
       "description": "An extremely fast JavaScript and CSS bundler and minifier.",
-      "latestVersion": "0.28.1",
+      "latestVersion": "0.28.2",
       "license": "MIT",
       "homepage": "https://github.com/evanw/esbuild#readme",
       "repository": "git+https://github.com/evanw/esbuild.git",
       "distTags": {
-        "latest": "0.28.1"
+        "latest": "0.28.2"
       },
       "createdAt": "2017-11-26T05:52:58.272Z",
-      "modifiedAt": "2026-06-11T22:47:05.387Z",
-      "latestPublishedAt": "2026-06-11T22:47:05.085Z",
+      "modifiedAt": "2026-08-08T20:00:55.803Z",
+      "latestPublishedAt": "2026-08-08T20:00:55.454Z",
       "maintainers": [
         "esbuild"
       ],
@@ -24,10 +24,10 @@
       "bin": {
         "esbuild": "bin/esbuild"
       },
-      "unpackedSize": 146953,
-      "lastWeekDownloads": 261705182,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 147361,
+      "lastWeekDownloads": 303541978,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/esbuild",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/esbuild"
@@ -36,7 +36,7 @@
     {
       "name": "eslint",
       "description": "An AST-based pattern checker for JavaScript.",
-      "latestVersion": "10.8.0",
+      "latestVersion": "10.13.0",
       "license": "MIT",
       "homepage": "https://eslint.org",
       "repository": "git+https://github.com/eslint/eslint.git",
@@ -44,11 +44,11 @@
         "es6jsx": "0.11.0-alpha.0",
         "next": "10.0.0-rc.2",
         "maintenance": "9.39.5",
-        "latest": "10.8.0"
+        "latest": "10.13.0"
       },
       "createdAt": "2013-07-04T17:01:29.347Z",
-      "modifiedAt": "2026-07-24T20:15:20.853Z",
-      "latestPublishedAt": "2026-07-24T20:15:20.693Z",
+      "modifiedAt": "2026-10-16T14:24:10.969Z",
+      "latestPublishedAt": "2026-10-16T14:24:10.765Z",
       "maintainers": [
         "eslintbot",
         "openjsfoundation"
@@ -63,10 +63,10 @@
       "bin": {
         "eslint": "bin/eslint.js"
       },
-      "unpackedSize": 2921452,
-      "lastWeekDownloads": 152812999,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 2950609,
+      "lastWeekDownloads": 158743826,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/eslint",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/eslint"
@@ -75,17 +75,17 @@
     {
       "name": "jest",
       "description": "Delightful JavaScript Testing.",
-      "latestVersion": "30.4.2",
+      "latestVersion": "30.5.2",
       "license": "MIT",
       "homepage": "https://jestjs.io/",
-      "repository": "https://github.com/jestjs/jest.git",
+      "repository": "git+https://github.com/jestjs/jest.git",
       "distTags": {
         "next": "30.0.0-rc.1",
-        "latest": "30.4.2"
+        "latest": "30.5.2"
       },
       "createdAt": "2012-02-22T15:25:44.365Z",
-      "modifiedAt": "2026-05-09T00:31:21.174Z",
-      "latestPublishedAt": "2026-05-09T00:31:21.036Z",
+      "modifiedAt": "2026-09-18T13:58:07.334Z",
+      "latestPublishedAt": "2026-09-18T13:58:07.141Z",
       "maintainers": [
         "aaronabramov",
         "cpojer",
@@ -119,11 +119,13 @@
         "typescript",
         "watch"
       ],
-      "bin": "./bin/jest.js",
+      "bin": {
+        "jest": "bin/jest.js"
+      },
       "unpackedSize": 6698,
-      "lastWeekDownloads": 46603807,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "lastWeekDownloads": 46829919,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/jest",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/jest"
@@ -132,20 +134,20 @@
     {
       "name": "npm",
       "description": "a package manager for JavaScript",
-      "latestVersion": "12.0.2",
+      "latestVersion": "12.2.0",
       "license": "Artistic-2.0",
       "homepage": "https://docs.npmjs.com/",
       "repository": "git+https://github.com/npm/cli.git",
       "distTags": {
         "latest-1": "1.4.29",
-        "latest-3": "3.10.10",
         "next-3": "3.10.10",
+        "latest-3": "3.10.10",
         "latest-2": "2.15.12",
         "next-2": "2.15.12",
         "next-4": "4.6.1",
         "latest-4": "4.6.1",
-        "next-5": "5.10.0",
         "latest-5": "5.10.0",
+        "next-5": "5.10.0",
         "latest-7": "7.24.2",
         "next-7": "7.24.2",
         "next-6": "6.14.18",
@@ -153,15 +155,16 @@
         "latest-6": "6.14.18",
         "next-8": "8.19.4",
         "next-9": "9.9.4",
-        "latest": "12.0.2",
         "next-10": "10.9.9",
-        "next-11": "11.19.0",
-        "next-12": "12.0.2"
+        "next-12": "12.2.1",
+        "latest": "12.2.0",
+        "next-11": "11.21.1"
       },
       "createdAt": "2013-07-12T18:32:48.902Z",
-      "modifiedAt": "2026-07-29T21:08:12.186Z",
-      "latestPublishedAt": "2026-07-29T21:06:31.421Z",
+      "modifiedAt": "2026-10-15T17:40:08.297Z",
+      "latestPublishedAt": "2026-09-30T16:46:11.700Z",
       "maintainers": [
+        "martinrrm",
         "npm-cli-ops",
         "reggi",
         "saquibkhan"
@@ -176,10 +179,10 @@
         "npm": "bin/npm-cli.js",
         "npx": "bin/npx-cli.js"
       },
-      "unpackedSize": 12362712,
-      "lastWeekDownloads": 16556785,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 12397700,
+      "lastWeekDownloads": 16336949,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/npm",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/npm"
@@ -188,20 +191,20 @@
     {
       "name": "nx",
       "description": "The core Nx plugin contains the core functionality of Nx like the project graph, nx commands and task orchestration.",
-      "latestVersion": "23.1.1",
+      "latestVersion": "23.3.0",
       "license": "MIT",
       "homepage": "https://nx.dev",
       "repository": "https://github.com/nrwl/nx.git",
       "distTags": {
-        "pull-request": "23.1.0-pr.36263.fac529b",
-        "previous": "22.7.8",
-        "next": "23.2.0-beta.4",
-        "canary": "23.2.0-canary.20260730-c654db8",
-        "latest": "23.1.1"
+        "previous": "22.7.12",
+        "latest": "23.3.0",
+        "canary": "24.0.0-canary.20261016-5ef7804",
+        "pull-request": "24.0.0-pr.37405.acdaf31",
+        "next": "24.0.0-beta.2"
       },
       "createdAt": "2011-08-08T05:06:23.816Z",
-      "modifiedAt": "2026-07-30T23:14:23.967Z",
-      "latestPublishedAt": "2026-07-30T22:40:12.794Z",
+      "modifiedAt": "2026-10-16T20:01:48.782Z",
+      "latestPublishedAt": "2026-10-07T15:17:23.790Z",
       "maintainers": [
         "altan-nrwl",
         "jack-nrwl",
@@ -231,10 +234,10 @@
         "nx": "./dist/bin/nx.js",
         "nx-cloud": "./dist/bin/nx-cloud.js"
       },
-      "unpackedSize": 17187924,
-      "lastWeekDownloads": 10229766,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 20944560,
+      "lastWeekDownloads": 10795403,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/nx",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/nx"
@@ -243,10 +246,10 @@
     {
       "name": "pnpm",
       "description": "Fast, disk space efficient package manager",
-      "latestVersion": "11.18.0",
+      "latestVersion": "12.14.0",
       "license": "MIT",
       "homepage": "https://pnpm.io",
-      "repository": "git+https://github.com/pnpm/pnpm.git",
+      "repository": "https://github.com/pnpm/pnpm",
       "distTags": {
         "latest-1": "1.43.1",
         "latest-2": "2.25.7",
@@ -255,65 +258,44 @@
         "latest-5": "5.18.10",
         "dev": "6.23.7-202112041634",
         "pr4475": "0.0.0-pr4475.1",
-        "next-6": "6.35.1",
         "latest-6": "6.35.1",
+        "next-6": "6.35.1",
         "latest-7": "7.33.5",
         "next-7": "7.33.7",
-        "latest-8": "8.15.9",
         "next-8": "8.15.9",
-        "latest-9": "9.15.9",
+        "latest-8": "8.15.9",
         "next-9": "9.15.9",
-        "latest-10": "10.34.5",
-        "next-10": "10.34.5",
-        "latest-11": "11.18.0",
-        "next-11": "11.19.0",
-        "latest": "11.18.0",
-        "next-12": "12.0.0-beta.2"
+        "latest-9": "9.15.9",
+        "latest": "12.14.0",
+        "next-10": "10.34.7",
+        "latest-10": "10.34.7",
+        "next-11": "11.28.6",
+        "latest-11": "11.28.6",
+        "next-12": "12.14.0",
+        "latest-12": "12.14.0"
       },
       "createdAt": "2013-03-08T23:25:56.611Z",
-      "modifiedAt": "2026-07-31T09:09:14.632Z",
-      "latestPublishedAt": "2026-07-29T07:50:16.898Z",
+      "modifiedAt": "2026-10-16T12:39:24.448Z",
+      "latestPublishedAt": "2026-10-15T13:39:41.432Z",
       "maintainers": [
         "pnpmuser",
         "zkochan"
       ],
       "keywords": [
-        "dependencies",
-        "dependency manager",
-        "efficient",
-        "fast",
-        "hardlinks",
-        "install",
-        "installer",
-        "link",
-        "lockfile",
-        "modules",
-        "monorepo",
-        "multi-package",
-        "npm",
         "package manager",
-        "package.json",
-        "packages",
         "pnpm",
-        "pnpm11",
-        "prune",
-        "rapid",
-        "remove",
-        "shrinkwrap",
-        "symlinks",
-        "uninstall",
-        "workspace"
+        "rust"
       ],
       "bin": {
-        "pn": "bin/pnpm.mjs",
-        "pnx": "bin/pnpx.mjs",
-        "pnpm": "bin/pnpm.mjs",
-        "pnpx": "bin/pnpx.mjs"
+        "pn": "pn",
+        "pnx": "pnx",
+        "pnpm": "pnpm",
+        "pnpx": "pnpx"
       },
-      "unpackedSize": 36673993,
-      "lastWeekDownloads": 146013885,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 4171980,
+      "lastWeekDownloads": 223195967,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/pnpm",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/pnpm"
@@ -322,17 +304,17 @@
     {
       "name": "prettier",
       "description": "Prettier is an opinionated code formatter",
-      "latestVersion": "3.9.6",
+      "latestVersion": "3.9.10",
       "license": "MIT",
       "homepage": "https://prettier.io",
       "repository": "git+https://github.com/prettier/prettier.git",
       "distTags": {
         "next": "4.0.0-alpha.13",
-        "latest": "3.9.6"
+        "latest": "3.9.10"
       },
       "createdAt": "2017-01-10T03:45:38.963Z",
-      "modifiedAt": "2026-07-21T05:51:54.134Z",
-      "latestPublishedAt": "2026-07-21T05:51:53.987Z",
+      "modifiedAt": "2026-10-10T08:35:28.619Z",
+      "latestPublishedAt": "2026-10-10T08:35:28.472Z",
       "maintainers": [
         "azz",
         "duailibe",
@@ -350,10 +332,10 @@
       "bin": {
         "prettier": "bin/prettier.cjs"
       },
-      "unpackedSize": 9954439,
-      "lastWeekDownloads": 117403209,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 9959033,
+      "lastWeekDownloads": 139055087,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/prettier",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/prettier"
@@ -362,19 +344,19 @@
     {
       "name": "rollup",
       "description": "Next-generation ES module bundler",
-      "latestVersion": "4.62.3",
+      "latestVersion": "4.64.7",
       "license": "MIT",
       "homepage": "https://rollupjs.org/",
       "repository": "git+https://github.com/rollup/rollup.git",
       "distTags": {
-        "beta": "4.55.1-0",
         "backports-2": "2.80.0",
         "backports-3": "3.30.0",
-        "latest": "4.62.3"
+        "beta": "5.0.0-0",
+        "latest": "4.64.7"
       },
       "createdAt": "2015-05-14T22:30:38.015Z",
-      "modifiedAt": "2026-07-26T15:00:29.013Z",
-      "latestPublishedAt": "2026-07-26T15:00:28.695Z",
+      "modifiedAt": "2026-10-15T05:47:05.404Z",
+      "latestPublishedAt": "2026-10-15T05:47:05.043Z",
       "maintainers": [
         "eventualbuddha",
         "lukastaegert",
@@ -392,10 +374,10 @@
       "bin": {
         "rollup": "dist/bin/rollup"
       },
-      "unpackedSize": 2851429,
-      "lastWeekDownloads": 125505397,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 2935801,
+      "lastWeekDownloads": 126085013,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/rollup",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/rollup"
@@ -404,16 +386,16 @@
     {
       "name": "tsx",
       "description": "TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files",
-      "latestVersion": "4.23.1",
+      "latestVersion": "4.23.15",
       "license": "MIT",
       "homepage": "https://tsx.hirok.io",
       "repository": "git+https://github.com/privatenumber/tsx.git",
       "distTags": {
-        "latest": "4.23.1"
+        "latest": "4.23.15"
       },
       "createdAt": "2015-08-20T01:25:39.249Z",
-      "modifiedAt": "2026-07-20T09:46:30.767Z",
-      "latestPublishedAt": "2026-07-13T03:13:33.471Z",
+      "modifiedAt": "2026-09-20T07:22:18.060Z",
+      "latestPublishedAt": "2026-09-20T07:22:17.792Z",
       "maintainers": [
         "hirokiosame"
       ],
@@ -430,10 +412,10 @@
       "bin": {
         "tsx": "dist/cli.mjs"
       },
-      "unpackedSize": 525087,
-      "lastWeekDownloads": 83684681,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 396881,
+      "lastWeekDownloads": 97967694,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/tsx",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/tsx"
@@ -441,20 +423,20 @@
     },
     {
       "name": "turbo",
-      "description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
-      "latestVersion": "2.10.7",
+      "description": "Turborepo is the build system for coding agents.",
+      "latestVersion": "2.11.9",
       "license": "MIT",
       "homepage": "https://turborepo.dev",
       "repository": "git+https://github.com/vercel/turborepo.git",
       "distTags": {
         "next": "0.9.0-next.22",
         "turbo-2.3": "2.3.7",
-        "latest": "2.10.7",
-        "canary": "2.10.8-canary.4"
+        "latest": "2.11.9",
+        "canary": "2.11.9-canary.1"
       },
       "createdAt": "2013-05-06T20:41:30.178Z",
-      "modifiedAt": "2026-07-29T19:49:40.165Z",
-      "latestPublishedAt": "2026-07-25T15:22:07.536Z",
+      "modifiedAt": "2026-10-16T19:07:34.765Z",
+      "latestPublishedAt": "2026-10-16T19:07:34.393Z",
       "maintainers": [
         "turbobot",
         "vercel-release-bot"
@@ -463,10 +445,10 @@
       "bin": {
         "turbo": "bin/turbo"
       },
-      "unpackedSize": 56953,
-      "lastWeekDownloads": 20415901,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 765181,
+      "lastWeekDownloads": 29886059,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/turbo",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/turbo"
@@ -486,10 +468,10 @@
         "beta": "6.0.0-beta",
         "rc": "7.0.1-rc",
         "latest": "7.0.2",
-        "next": "7.1.0-dev.20260731.1"
+        "next": "7.1.0-dev.20261016.1"
       },
       "createdAt": "2012-10-01T15:35:39.553Z",
-      "modifiedAt": "2026-07-31T08:34:16.985Z",
+      "modifiedAt": "2026-10-16T08:21:23.745Z",
       "latestPublishedAt": "2026-07-08T15:55:18.431Z",
       "maintainers": [
         "andrewbranch",
@@ -511,9 +493,9 @@
         "tsc": "bin/tsc"
       },
       "unpackedSize": 2497498,
-      "lastWeekDownloads": 252816576,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "lastWeekDownloads": 307015402,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/typescript",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/typescript"
@@ -522,19 +504,19 @@
     {
       "name": "vite",
       "description": "Native-ESM powered web dev build tool",
-      "latestVersion": "8.2.0",
+      "latestVersion": "8.3.4",
       "license": "MIT",
       "homepage": "https://vite.dev",
       "repository": "git+https://github.com/vitejs/vite.git",
       "distTags": {
         "alpha": "6.0.0-alpha.24",
-        "previous": "7.3.6",
-        "latest": "8.2.0",
-        "beta": "8.2.0-beta.0"
+        "beta": "8.3.0-beta.1",
+        "latest": "8.3.4",
+        "previous": "6.4.4"
       },
       "createdAt": "2020-04-21T05:05:15.476Z",
-      "modifiedAt": "2026-07-30T12:03:27.021Z",
-      "latestPublishedAt": "2026-07-30T12:03:25.771Z",
+      "modifiedAt": "2026-10-08T12:07:04.837Z",
+      "latestPublishedAt": "2026-10-08T12:07:04.441Z",
       "maintainers": [
         "vitebot",
         "yyx990803"
@@ -550,10 +532,10 @@
       "bin": {
         "vite": "bin/vite.js"
       },
-      "unpackedSize": 2327306,
-      "lastWeekDownloads": 143695293,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 2376813,
+      "lastWeekDownloads": 195261248,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/vite",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/vite"
@@ -562,18 +544,20 @@
     {
       "name": "vitest",
       "description": "Next generation testing framework powered by Vite",
-      "latestVersion": "4.1.10",
+      "latestVersion": "5.0.5",
       "license": "MIT",
       "homepage": "https://vitest.dev",
       "repository": "git+https://github.com/vitest-dev/vitest.git",
       "distTags": {
         "V3": "3.2.7",
-        "latest": "4.1.10",
-        "beta": "5.0.0-beta.7"
+        "beta": "5.0.0-beta.7",
+        "V4": "4.1.12",
+        "rc": "5.0.0-rc.4",
+        "latest": "5.0.5"
       },
       "createdAt": "2021-12-03T13:34:59.705Z",
-      "modifiedAt": "2026-07-24T11:43:58.944Z",
-      "latestPublishedAt": "2026-07-06T06:44:42.684Z",
+      "modifiedAt": "2026-10-15T14:51:25.470Z",
+      "latestPublishedAt": "2026-10-15T14:29:01.396Z",
       "maintainers": [
         "antfu",
         "ariperkkio",
@@ -590,10 +574,10 @@
       "bin": {
         "vitest": "./vitest.mjs"
       },
-      "unpackedSize": 1905633,
-      "lastWeekDownloads": 85985847,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 2817789,
+      "lastWeekDownloads": 125253587,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/vitest",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/vitest"
@@ -602,7 +586,7 @@
     {
       "name": "webpack",
       "description": "Packs ECMAScript/CommonJs/AMD modules for the browser. Allows you to split your codebase into multiple bundles, which can be loaded on demand. Supports loaders to preprocess files, i.e. json, jsx, es7, css, less, ... and your custom stuff.",
-      "latestVersion": "5.109.2",
+      "latestVersion": "5.112.0",
       "license": "MIT",
       "homepage": "https://github.com/webpack/webpack",
       "repository": "git+https://github.com/webpack/webpack.git",
@@ -612,11 +596,11 @@
         "webpack-3": "3.12.0",
         "next": "5.0.0-rc.6",
         "webpack-4": "4.47.0",
-        "latest": "5.109.2"
+        "latest": "5.112.0"
       },
       "createdAt": "2012-03-11T20:59:59.339Z",
-      "modifiedAt": "2026-07-28T18:14:32.672Z",
-      "latestPublishedAt": "2026-07-28T18:14:32.243Z",
+      "modifiedAt": "2026-10-15T22:26:48.805Z",
+      "latestPublishedAt": "2026-10-15T22:26:48.350Z",
       "maintainers": [
         "15000621931",
         "__hai",
@@ -631,10 +615,10 @@
       "bin": {
         "webpack": "bin/webpack.js"
       },
-      "unpackedSize": 8119626,
-      "lastWeekDownloads": 55677861,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "unpackedSize": 13651450,
+      "lastWeekDownloads": 56233661,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/webpack",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/webpack"
@@ -665,9 +649,9 @@
         "yarnpkg": "bin/yarn.js"
       },
       "unpackedSize": 5340487,
-      "lastWeekDownloads": 9866116,
-      "downloadsStart": "2026-07-24",
-      "downloadsEnd": "2026-07-30",
+      "lastWeekDownloads": 9428906,
+      "downloadsStart": "2026-10-06",
+      "downloadsEnd": "2026-10-12",
       "sources": {
         "registry": "https://registry.npmjs.org/yarn",
         "downloads": "https://api.npmjs.org/downloads/point/last-week/yarn"
